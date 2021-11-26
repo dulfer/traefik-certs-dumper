@@ -30,7 +30,8 @@ More information about Docker Compose can be found on the tool's website: [docs.
 ```
 2. cd into the directory and run the following command
 ```bash
- cd traefik-certs-dumper
+ cd traefik-certs-dumper  
+ docker build .
 ```
 
 3. Once the build has finished take note of the newly-built _image id_, displayed at the end of the build output.  
