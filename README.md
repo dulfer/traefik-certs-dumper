@@ -31,7 +31,7 @@ More information about Docker Compose can be found on the tool's website: [docs.
 2. cd into the directory and run the following command
 ```bash
  cd traefik-certs-dumper  
- docker build .
+ docker build -t traefik_certdumper .
 ```
 
 3. Once the build has finished take note of the newly-built _image id_, displayed at the end of the build output.  
@@ -47,6 +47,7 @@ Step 12/12 : ENTRYPOINT ["/usr/bin/dump"]
 Removing intermediate container 07aaba04ebdb
  ---> c41cd379be2e
 Successfully built c41cd379be2e
+Successfully tagged traefik_certdumper:latest
 ```
 
 ## Docker Compose file
@@ -57,7 +58,6 @@ The example below will exporting __all certificates__ to the output directory.
 Make sure you subsitute the following volumes and placeholders
 | Item | Description |
 |---|---|
-| ```c41cd379be2e``` | Replace with the image id of your docker build |
 | /opt/traefik/data | Path to your Traefik ```acme.json``` file | 
 | /opt/ssl | Path where the certificates will be dumped to |
 
@@ -66,7 +66,7 @@ version: "3.7"
 
 services:
   certdumper:
-    image: c41cd379be2e
+    image: traefik_certdumper:latest
     container_name: traefik_certdumper
     network_mode: none
     volumes:
